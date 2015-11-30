@@ -1,0 +1,21 @@
+{
+  "name": "slacker-server",
+  "version": "0.0.1",
+  "description": "The back-end server for The Slacker Quiz",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "4.13.3"
+  },
+  "engines": {
+    "node": "4.2.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "Rod Machen",
+  "license": "MIT"
+}
