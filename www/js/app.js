@@ -18,14 +18,19 @@ angular.module('quizApp', ['ionic'])
   });
 })
 
+.controller('MainCtrl', function($scope) {
+
+  var user = {};
+
+  $scope.submitEmail = function() {
+    user.email = this.email;
+    console.log(user);
+  };
+})
+
 .config(function($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.otherwise('/')
 
-  // $stateProvider.state('home', {
-  //   url: '/',
-  //   template: '<ion-pane><ion-header-bar class="bar-stable">' + 
-  //   '<h1 class="title">The Slacker Quiz</h1></ion-header-bar><ion-content></ion-content></ion-pane>'
-  // });
   $stateProvider.state('home', {
     url: '/',
     templateUrl: 'views/home.html'
