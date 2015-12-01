@@ -4,6 +4,7 @@ var mongodb = require('mongodb');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var validator = require('express-validator');
+var cors = require('cors');
 
 if (process.env.PORT) { // if running on Heroku
   app.set('port', (process.env.PORT));
@@ -24,9 +25,9 @@ app.use(bodyParser.json());
 app.use(validator([])); // this line must be immediately after express.bodyParser()!
 app.use(bodyParser.urlencoded({ extended: false }));
 
+app.use(cors());
+app.options('*', cors());
+
 // app.get('/', function(request, response) {
 //   // TODO add default get request
 // });
-
-
-
