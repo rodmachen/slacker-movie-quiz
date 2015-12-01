@@ -9089,5 +9089,5 @@ a.button {
   -webkit-transition-duration: 0s;
   transition-duration: 0s; }
 
-h1, h2, input {
+body, input {
   text-align: center; }
