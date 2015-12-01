@@ -18,13 +18,17 @@ angular.module('quizApp', ['ionic'])
   });
 })
 
-.controller('MainCtrl', function($scope) {
+.controller('MainCtrl', function($scope, $state) {
 
   var user = {};
 
   $scope.submitEmail = function() {
-    user.email = this.email;
-    console.log(user);
+    if (this.email) {
+      user.email = this.email;
+      console.log(user);
+      $state.go('^.' + 'quiz');
+    };
+
   };
 })
 
@@ -34,6 +38,11 @@ angular.module('quizApp', ['ionic'])
   $stateProvider.state('home', {
     url: '/',
     templateUrl: 'views/home.html'
+  });
+
+  $stateProvider.state('quiz', {
+    url: '/quiz',
+    templateUrl: 'views/quiz.html'
   })
   
 })
