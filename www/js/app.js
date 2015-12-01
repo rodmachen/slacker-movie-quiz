@@ -28,6 +28,23 @@ angular.module('quizApp', ['ionic'])
     { text: 'Half Price Books', checked: false },
   ];
 
+  $scope.selection = [];
+
+  $scope.toggleSelection = function toggleSelection(question) {
+    var idx = $scope.selection.indexOf(question);
+
+    // is currently selected
+    if (idx > -1) {
+      $scope.selection.splice(idx, 1);
+    }
+
+    // is newly selected
+    else {
+      $scope.selection.push(question);
+    }
+
+  };
+
   var user = {};
 
   $scope.submitEmail = function() {
@@ -39,7 +56,7 @@ angular.module('quizApp', ['ionic'])
   };
 
   $scope.submitQuiz = function() {
-    user.email = this.email;
+    user.score = $scope.selection.length / $scope.quizList.length * 100;
     console.log(user);
     $state.go('^.' + 'results');
   };
