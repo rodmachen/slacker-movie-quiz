@@ -3,20 +3,19 @@
 </ion-header-bar>
 
 <ion-content>
+
   <div class="padding">
-    <h3>Welcome to</h3>
-    <h3>The Slacker Quiz!</h3>
-    <h4>To get started, enter an email address to receive your results.</h4>
+    <h4>Select the filming locations from Slacker that you visited.</h4>
   </div>
-  <div class="list">
-    <label class="item item-input">
-      <!-- <span class="input-label">email</span> -->
-      <input type="email" ng-model="email" placeholder="me@example.com" required>
-    </label>
-  </div>
-  <button class="button button-medium button-positive padding-horizontal" type="submit" ng-click="submitEmail()">
-    Let's get started!
+
+  <ion-checkbox ng-repeat="item in quizList" ng-model="item.checked" ng-checked="item.checked" ng-click="toggleSelection(item.text)">
+    {{ item.text }}
+  </ion-checkbox>
+  <br>
+  <button class="button button-medium button-assertive padding-horizontal" type="submit" ng-click="submitQuiz()">
+    Submit!
   </button>
+
 </ion-content>
 
 <ion-footer-bar class="bar-stable">

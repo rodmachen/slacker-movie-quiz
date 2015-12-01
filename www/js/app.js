@@ -20,6 +20,14 @@ angular.module('quizApp', ['ionic'])
 
 .controller('MainCtrl', function($scope, $state) {
 
+  $scope.quizList = [
+    { text: 'Les Amis', checked: false },
+    { text: 'The Continental Club', checked: false },
+    { text: 'GM Steakhouse', checked: false },
+    { text: 'Quack\'s on the Drag', checked: false },
+    { text: 'Half Price Books', checked: false },
+  ];
+
   var user = {};
 
   $scope.submitEmail = function() {
@@ -28,8 +36,14 @@ angular.module('quizApp', ['ionic'])
       console.log(user);
       $state.go('^.' + 'quiz');
     };
-
   };
+
+  $scope.submitQuiz = function() {
+    user.email = this.email;
+    console.log(user);
+    $state.go('^.' + 'results');
+  };
+
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
@@ -45,4 +59,8 @@ angular.module('quizApp', ['ionic'])
     templateUrl: 'views/quiz.html'
   })
   
+  $stateProvider.state('results', {
+    url: '/results',
+    templateUrl: 'views/results.html'
+  })
 })
