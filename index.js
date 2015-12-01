@@ -1,12 +1,16 @@
 var express = require('express');
 var app = express();
-var local = require('./config.js');
 var mongodb = require('mongodb');
 var mongoose = require('mongoose');
-// mongoose.connect(local.MONGOLAB_URI);
 
-
-app.set('port', (process.env.PORT || 5000));
+if (process.env.PORT) { // if running on Heroku
+  app.set('port', (process.env.PORT));
+  mongoose.connect(process.env.MONGOLAB_URI);
+} else { // running locally
+  app.set('port', (5000));
+  var local = require('./config.js');
+  mongoose.connect(local.MONGOLAB_URI);
+}
 
 app.use(express.static(__dirname + '/public'));
 
