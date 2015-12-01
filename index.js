@@ -28,6 +28,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 app.options('*', cors());
 
+app.post('/', function(req, res) {
+  console.log('posted');
+});
+
 // app.get('/', function(request, response) {
 //   // TODO add default get request
 // });
