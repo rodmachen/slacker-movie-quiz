@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('starter', ['ionic'])
+angular.module('quizApp', ['ionic'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -16,4 +16,19 @@ angular.module('starter', ['ionic'])
       StatusBar.styleDefault();
     }
   });
+})
+
+.config(function($stateProvider, $urlRouterProvider) {
+  $urlRouterProvider.otherwise('/')
+
+  // $stateProvider.state('home', {
+  //   url: '/',
+  //   template: '<ion-pane><ion-header-bar class="bar-stable">' + 
+  //   '<h1 class="title">The Slacker Quiz</h1></ion-header-bar><ion-content></ion-content></ion-pane>'
+  // });
+  $stateProvider.state('home', {
+    url: '/',
+    templateUrl: 'views/home.html'
+  })
+  
 })
