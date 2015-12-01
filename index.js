@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var mongodb = require('mongodb');
 var mongoose = require('mongoose');
+var db = mongoose.connection;
 var bodyParser = require('body-parser');
 var validator = require('express-validator');
 var cors = require('cors');
@@ -32,6 +33,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(cors());
 app.options('*', cors());
+
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function(callback) {
+  console.log('once opened');
+});
+
+
 
 app.post('/', function(req, res) {
   // TODO correct status code, and registers
