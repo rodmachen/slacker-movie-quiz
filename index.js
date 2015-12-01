@@ -34,6 +34,8 @@ app.use(cors());
 app.options('*', cors());
 
 app.post('/', function(req, res) {
+  // TODO correct status code, and registers
+  res.status(202);
   console.log('posted');
   sendMail(req.body.email, req.body.score);
 });
