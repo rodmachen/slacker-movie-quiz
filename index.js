@@ -39,13 +39,19 @@ db.once('open', function(callback) {
   console.log('once opened');
 });
 
+var quizSchema = mongoose.Schema({
+  email: String,
+  score: Number,
+});
 
+var Quizee = mongoose.model('Quizee', quizSchema);
 
 app.post('/', function(req, res) {
   // TODO correct status code, and registers
-  res.status(202);
   console.log('posted');
+  Quizee.create(req.body);
   sendMail(req.body.email, req.body.score);
+  res.sendStatus(200);
 });
 
 function sendMail(address, score) {
