@@ -14,7 +14,7 @@ angular.module('quizApp', ['ionic'])
   });
 })
 
-.controller('MainCtrl', function($scope, $state) {
+.controller('MainCtrl', function($scope, $state, $http) {
 
   $scope.quizList = [
     { text: 'Les Amis', checked: false },
@@ -54,6 +54,13 @@ angular.module('quizApp', ['ionic'])
   $scope.submitQuiz = function() {
     $scope.user.score = $scope.selection.length / $scope.quizList.length * 100;
     console.log($scope.user);
+    $http.post('http://localhost:5000/', $scope.user)
+      // TODO register successful status code
+      .then(function() {
+        console.log('SUCCESS: successful post submission');
+      }, function() {
+        console.log('ERROR: unsuccessful post submission');
+      });
     $state.go('^.' + 'results');
   };
 
