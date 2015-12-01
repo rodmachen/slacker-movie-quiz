@@ -1,18 +1,14 @@
-// Ionic Starter App
-
-// angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
-// the 2nd parameter is an array of 'requires'
 angular.module('quizApp', ['ionic'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
-    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-    // for form inputs)
-    if(window.cordova && window.cordova.plugins.Keyboard) {
+    // Hide the accessory bar by default (remove this to show the accessory bar
+    // above the keyboard for form inputs)
+    if (window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
     }
-    if(window.StatusBar) {
+
+    if (window.StatusBar) {
       StatusBar.styleDefault();
     }
   });
@@ -45,39 +41,45 @@ angular.module('quizApp', ['ionic'])
 
   };
 
-  var user = {};
+  $scope.user = {};
 
   $scope.submitEmail = function() {
     if (this.email) {
-      user.email = this.email;
-      console.log(user);
+      $scope.user.email = this.email;
+      console.log($scope.user);
       $state.go('^.' + 'quiz');
-    };
+    }
   };
 
   $scope.submitQuiz = function() {
-    user.score = $scope.selection.length / $scope.quizList.length * 100;
-    console.log(user);
+    $scope.user.score = $scope.selection.length / $scope.quizList.length * 100;
+    console.log($scope.user);
     $state.go('^.' + 'results');
+  };
+
+  $scope.submitRestart = function() {
+    $scope.user = {};
+    console.log($scope.user);
+    $state.go('^.' + 'home');
   };
 
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
-  $urlRouterProvider.otherwise('/')
+  $urlRouterProvider.otherwise('/');
 
   $stateProvider.state('home', {
     url: '/',
-    templateUrl: 'views/home.html'
+    templateUrl: 'views/home.html',
   });
 
   $stateProvider.state('quiz', {
     url: '/quiz',
-    templateUrl: 'views/quiz.html'
-  })
-  
+    templateUrl: 'views/quiz.html',
+  });
+
   $stateProvider.state('results', {
     url: '/results',
-    templateUrl: 'views/results.html'
-  })
-})
+    templateUrl: 'views/results.html',
+  });
+});
