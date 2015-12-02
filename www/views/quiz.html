@@ -11,7 +11,9 @@
   <ion-checkbox ng-repeat="item in quizList" ng-model="item.checked" ng-checked="item.checked" ng-click="toggleSelection(item.text)">
     {{ item.text }}
   </ion-checkbox>
+
   <br>
+  
   <button class="button button-medium button-assertive padding-horizontal" type="submit" ng-click="submitQuiz()">
     Submit!
   </button>

@@ -1,5 +1,6 @@
 angular.module('quizApp', ['ionic'])
 
+// Default Ionic code
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar
@@ -14,8 +15,10 @@ angular.module('quizApp', ['ionic'])
   });
 })
 
+// Main Controller
 .controller('MainCtrl', function($scope, $state, $http) {
 
+  // List of the quiz questions
   $scope.quizList = [
     { text: 'Les Amis', checked: false },
     { text: 'The Continental Club', checked: false },
@@ -24,8 +27,10 @@ angular.module('quizApp', ['ionic'])
     { text: 'Half Price Books', checked: false },
   ];
 
+  // Array for keeping track of selected answers
   $scope.selection = [];
 
+  // Keeps track of selected answers
   $scope.toggleSelection = function toggleSelection(question) {
     var idx = $scope.selection.indexOf(question);
 
@@ -41,8 +46,11 @@ angular.module('quizApp', ['ionic'])
 
   };
 
+  // User object for storing user data
   $scope.user = {};
 
+  // 1st View Submit Button
+  // Captures email and moves to 2nd View
   $scope.submitEmail = function() {
     if (this.email) {
       $scope.user.email = this.email;
@@ -51,11 +59,12 @@ angular.module('quizApp', ['ionic'])
     }
   };
 
+  // 2nd View Submit Button
+  // Captures score and moves to 3rd View
   $scope.submitQuiz = function() {
     $scope.user.score = $scope.selection.length / $scope.quizList.length * 100;
     console.log($scope.user);
-    $http.post('http://localhost:5000/', $scope.user)
-      // TODO register successful status code
+    $http.post('https://slacker-server.herokuapp.com/', $scope.user)
       .then(function() {
         console.log('SUCCESS: successful post submission');
       }, function() {
@@ -64,6 +73,8 @@ angular.module('quizApp', ['ionic'])
     $state.go('^.' + 'results');
   };
 
+  // 3rd View Submit Button
+  // Empties User object and moves back to 1st View
   $scope.submitRestart = function() {
     $scope.user = {};
     console.log($scope.user);
@@ -72,19 +83,23 @@ angular.module('quizApp', ['ionic'])
 
 })
 
+// Application routes
 .config(function($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.otherwise('/');
 
+  // 1st View
   $stateProvider.state('home', {
     url: '/',
     templateUrl: 'views/home.html',
   });
 
+  // 2nd View
   $stateProvider.state('quiz', {
     url: '/quiz',
     templateUrl: 'views/quiz.html',
   });
 
+  // 3rd View
   $stateProvider.state('results', {
     url: '/results',
     templateUrl: 'views/results.html',
