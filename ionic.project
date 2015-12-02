@@ -1,6 +1,6 @@
 {
   "name": "slacker-quiz",
-  "app_id": "",
+  "app_id": "a5f42f86",
   "gulpStartupTasks": [
     "sass",
     "watch"
