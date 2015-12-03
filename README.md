@@ -1,1 +1,1 @@
-# slacker-server
+# The Slacker Quiz
