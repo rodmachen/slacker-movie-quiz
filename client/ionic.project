@@ -1,0 +1,12 @@
+{
+  "name": "slacker-quiz",
+  "app_id": "a5f42f86",
+  "gulpStartupTasks": [
+    "sass",
+    "watch"
+  ],
+  "watchPatterns": [
+    "www/**/*",
+    "!www/lib/**/*"
+  ]
+}

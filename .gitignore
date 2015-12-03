@@ -3,5 +3,6 @@ node_modules
 Dockerfile
 docker-compose.yml
 config.js
+platforms/
+plugins/
 */**/.DS_Store
-client
