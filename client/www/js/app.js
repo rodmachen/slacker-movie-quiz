@@ -64,7 +64,7 @@ angular.module('quizApp', ['ionic'])
   $scope.submitQuiz = function() {
     $scope.user.score = $scope.selection.length / $scope.quizList.length * 100;
     console.log($scope.user);
-    $http.post('https://slacker-server.herokuapp.com/', $scope.user)
+    $http.post('/', $scope.user)
       .then(function() {
         console.log('SUCCESS: successful post submission');
       }, function() {
