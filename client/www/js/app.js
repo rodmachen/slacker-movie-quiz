@@ -16,7 +16,7 @@ angular.module('quizApp', ['ionic'])
 })
 
 // Main Controller
-.controller('MainCtrl', function($scope, $state, $http) {
+.controller('MainCtrl', function($scope, data, $state, $http) {
 
   // List of the quiz questions
   $scope.quizList = [
@@ -47,7 +47,7 @@ angular.module('quizApp', ['ionic'])
   };
 
   // User object for storing user data
-  $scope.user = {};
+  $scope.user = data;
 
   // 1st View Submit Button
   // Captures email and moves to 2nd View
@@ -104,4 +104,8 @@ angular.module('quizApp', ['ionic'])
     url: '/results',
     templateUrl: 'views/results.html',
   });
+})
+
+.factory('data', function () {
+    return {};
 });
