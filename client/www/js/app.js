@@ -15,8 +15,27 @@ angular.module('quizApp', ['ionic'])
   });
 })
 
-// Main Controller
-.controller('MainCtrl', function($scope, data, $state, $http) {
+// Home Controller
+.controller('HomeCtrl', function($scope, data, $state, $http) {
+
+  // User object for storing user data
+  $scope.user = data;
+
+  // 1st View Submit Button
+  // Captures email and moves to 2nd View
+  $scope.submitEmail = function() {
+    if (this.email) {
+      $scope.user.email = this.email;
+      console.log($scope.user);
+      $state.go('^.' + 'quiz');
+    }
+  };
+
+})
+
+
+// Quiz Controller
+.controller('QuizCtrl', function($scope, data, $state, $http) {
 
   // List of the quiz questions
   $scope.quizList = [
@@ -49,16 +68,6 @@ angular.module('quizApp', ['ionic'])
   // User object for storing user data
   $scope.user = data;
 
-  // 1st View Submit Button
-  // Captures email and moves to 2nd View
-  $scope.submitEmail = function() {
-    if (this.email) {
-      $scope.user.email = this.email;
-      console.log($scope.user);
-      $state.go('^.' + 'quiz');
-    }
-  };
-
   // 2nd View Submit Button
   // Captures score and moves to 3rd View
   $scope.submitQuiz = function() {
@@ -72,6 +81,14 @@ angular.module('quizApp', ['ionic'])
       });
     $state.go('^.' + 'results');
   };
+
+})
+
+// Results Controller
+.controller('ResultsCtrl', function($scope, data, $state, $http) {
+
+  // User object for storing user data
+  $scope.user = data;
 
   // 3rd View Submit Button
   // Empties User object and moves back to 1st View
