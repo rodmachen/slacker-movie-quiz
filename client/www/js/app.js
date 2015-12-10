@@ -80,12 +80,14 @@ angular.module('quizApp', ['ionic'])
   $scope.goQuiz3 = function() {
     recordAnswer();
     $scope.quizList[1].checked = false;
+    console.log($scope.user);
     $state.go('^.' + 'quiz3');
   };
 
   $scope.goQuiz4 = function() {
     recordAnswer();
     $scope.quizList[2].checked = false;
+    console.log($scope.user);
     $state.go('^.' + 'quiz4');
   };
 
@@ -111,7 +113,8 @@ angular.module('quizApp', ['ionic'])
   $scope.user = data;
   $scope.results = results;
   $scope.submitRestart = function() {
-    $scope.user = {};
+    $scope.user.email = null;
+    $scope.user.score = null;
     $scope.results.questions = 0;
     $scope.results.correct = 0;
     $state.go('^.' + 'home');
@@ -155,7 +158,10 @@ angular.module('quizApp', ['ionic'])
 })
 
 .factory('data', function() {
-  return {};
+  return {
+    email: null,
+    score: null,
+  };
 })
 
 .factory('results', function() {
